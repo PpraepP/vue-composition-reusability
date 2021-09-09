@@ -10,12 +10,24 @@
 
 <script>
 import UserAlert from './UserAlert.vue';
-import alertMixin from '@/mixins/alert.js';
+import useAlert from '@/composables/alert.js';
 
 export default {
   components: {
     UserAlert
   },
-  mixins: [alertMixin]
+  setup() {
+    //you can use this
+    // const alertArray = useAlert();
+
+    // or use this "destructuring"
+    const [alertIsVisible, showAlert, hideAlert] = useAlert(true);
+
+    return {
+      alertIsVisible,
+      showAlert,
+      hideAlert
+    };
+  }
 };
 </script>
